@@ -26,7 +26,7 @@ function deleteCategory({ id }) {
     return index;
 }
 
-function editCategory({ id, name }) {
+function editCategory({ id, name}) {
     const indexof = categories.findIndex((cat) => cat.id === id)
     categories[indexof].name = name
     fs.writeFileSync('data/categories.json', JSON.stringify(categories))

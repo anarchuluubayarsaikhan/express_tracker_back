@@ -1,14 +1,14 @@
-const {createCategory,deleteCategory,editCategory,readCategory} = require("./services/categoryService")
+const {createCategory,deleteCategory,editCategory,readCategory} = require("./categoryService")
 
-function responseReadCategory () {
-    async (req, res) => {
+async function responseReadCategory (req, res) {
+   
         const categories = await readCategory()
         res.json(categories)
-      }
+      
 }
 
-function responseCreateCategory () {
-    async (req, res) => {
+async function responseCreateCategory (req, res) {
+    
         const { name } = req.body
         const id = await createCategory({ name })
         if (!name) {
@@ -17,10 +17,9 @@ function responseCreateCategory () {
         res.status(201).json({ id })
       }
     
-}
 
-function responseDeleteCategory () {
-    async (req, res) => {
+async  function responseDeleteCategory (req, res) {
+    
         const { id } = req.params
         const index = await deleteCategory({ id })
         if (index < 0) {
@@ -29,13 +28,13 @@ function responseDeleteCategory () {
         }
         res.sendStatus(204)
       }
-}
 
-function responseEditCategory () {
-    async (req, res) => {
+
+async  function responseEditCategory (req, res) {
+    
         const { id } = req.params;
         const { name } = req.body;
-        await editCategory({ id, name })
+        const indexof= await editCategory({ id, name })
         if (indexof < 0) {
           res.sendStatus(404)
           return
@@ -46,7 +45,6 @@ function responseEditCategory () {
         }
         res.sendStatus(200)
       }
-}
 
 module.exports = {
     responseReadCategory,
