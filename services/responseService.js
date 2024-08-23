@@ -7,6 +7,13 @@ async function responseReadCategory (req, res) {
       
 }
 
+async function responseReadOneCategory (req, res) {
+  const { id } = req.params
+  const categories = await readOneCategory()
+  res.json(categories)
+
+}
+
 async function responseCreateCategory (req, res) {
     
         const { name } = req.body
@@ -50,5 +57,5 @@ module.exports = {
     responseReadCategory,
     responseCreateCategory,
     responseDeleteCategory,
-    responseEditCategory,
+    responseEditCategory
 }
